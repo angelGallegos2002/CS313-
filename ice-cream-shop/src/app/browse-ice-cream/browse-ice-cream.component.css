@@ -1,0 +1,11 @@
+.flavor-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .flavor-card img {
+    object-fit: cover;
+    height: 150px;
+  }
+  
