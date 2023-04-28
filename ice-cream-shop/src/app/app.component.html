@@ -1,12 +1,32 @@
-
-
-<router-outlet></router-outlet>
-<mat-toolbar color="primary">
-  <span>Ice Cream Shop</span>
-  <span class="spacer"></span>
-  <button mat-button routerLink="/browse">Browse</button>
-  <button mat-button routerLink="/account">Account</button>
-  <button mat-button routerLink="/orders">Orders</button>
+<mat-toolbar>
+  <div class="navigation-links">
+    <a class="navigation-link" routerLink="/">Home</a>
+    <a class="navigation-link" routerLink="/order">Order</a>
+    <ng-container *ngIf="user">
+      <a class="navigation-link">{{ user.displayName }}</a>
+      <a class="navigation-link" (click)="logout()">Logout</a>
+    </ng-container>
+    <ng-container *ngIf="!user">
+      <a class="navigation-link" routerLink="/login">Login</a>
+      <a class="navigation-link" routerLink="/register">Register</a>
+    </ng-container>
+  </div>
 </mat-toolbar>
-<app-header></app-header>
+
 <router-outlet></router-outlet>
+
+<!-- Display a welcome message when the user is logged in -->
+<ng-container *ngIf="user">
+  <div class="welcome-message">
+    <h1>Welcome, {{ user.displayName }}!</h1>
+    <p>Enjoy browsing our delicious ice cream flavors and creating your perfect ice cream order!</p>
+  </div>
+</ng-container>
+
+<!-- Display a message prompting the user to log in or register when not logged in -->
+<ng-template #notLoggedIn>
+  <div class="login-prompt">
+    <h1>Welcome to our Ice Cream Shop!</h1>
+    <p>Please <a routerLink="/login">log in</a> or <a routerLink="/register">register</a> to start creating your ice cream order.</p>
+  </div>
+</ng-template>
