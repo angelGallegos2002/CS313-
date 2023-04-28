@@ -24,7 +24,7 @@ import { OrderComponent } from './order/order.component';
 import { BrowseIceCreamComponent } from './browse-ice-cream/browse-ice-cream.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-
+import { HomeModule } from './home/home.module';
 // Define your routes
 const routes: Routes = [
   { path: '', component: BrowseIceCreamComponent },
@@ -45,7 +45,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
+    HomeModule,
     // Add RouterModule to the imports array and pass the routes
     RouterModule.forRoot(routes),
     AppRoutingModule,
