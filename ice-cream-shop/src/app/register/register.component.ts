@@ -12,14 +12,13 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService) {}
 
-  onSubmit(): void {
-    this.authService
-      .signUp(this.email, this.password)
-      .then(result => {
-        console.log('Registration successful:', result);
+  onRegister() {
+    this.authService.signUp(this.email, this.password)
+      .then((result) => {
+        console.log('User registered successfully:', result);
       })
-      .catch(error => {
-        console.error('Registration failed:', error);
+      .catch((error) => {
+        console.error('Error registering user:', error);
       });
   }
 }
