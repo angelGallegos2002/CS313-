@@ -1,27 +1,50 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticatedSource = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSource.asObservable();
+  user: Observable<any>;
 
-  constructor() {}
+  constructor(private angularFireAuth: AngularFireAuth) {
+    this.user = this.angularFireAuth.authState;
+  }
 
-  login(username: string, password: string): boolean {
-    // Replace with actual authentication logic (e.g., API call)
-    if (username === 'test' && password === 'test') {
-      this.isAuthenticatedSource.next(true);
-      return true;
-    } else {
-      this.isAuthenticatedSource.next(false);
-      return false;
+  async signUp(email: string, password: string): Promise<any> {
+    try {
+      const result = await this.angularFireAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      return result;
+    } catch (error) {
+      console.error('Error signing up:', error);
+      throw error;
     }
   }
 
-  logout(): void {
-    this.isAuthenticatedSource.next(false);
+  async signIn(email: string, password: string): Promise<any> {
+    try {
+      const result = await this.angularFireAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+      return result;
+    } catch (error) {
+      console.error('Error signing in:', error);
+      throw error;
+    }
+  }
+
+  async signOut(): Promise<void> {
+    try {
+      await this.angularFireAuth.signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+      throw error;
+    }
   }
 }

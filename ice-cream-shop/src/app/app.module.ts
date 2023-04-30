@@ -1,43 +1,64 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Import RouterModule and Route configuration
+import { RouterModule, Routes } from '@angular/router';
+
+// Import Angular Material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../app/enviroments/enviroment';
 import { AppComponent } from './app.component';
-import { BrowseIceCreamComponent } from './browse-ice-cream/browse-ice-cream.component';
-import { ManageAccountComponent } from './manage-account/manage-account.component';
-import { PlaceOrdersComponent } from './place-orders/place-orders.component';
-import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { OnlineCheckoutComponent } from './online-checkout/online-checkout.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
-import { IceCreamListComponent } from './ice-cream-list/ice-cream-list.component';
-import { AccountComponent } from './account/account.component';
+import { BrowseIceCreamComponent } from './browse-ice-cream/browse-ice-cream.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { HomeModule } from './home/home.module';
+// Define your routes
+const routes: Routes = [
+  { path: '', component: BrowseIceCreamComponent },
+  { path: 'order', component: OrderComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    BrowseIceCreamComponent,
-    ManageAccountComponent,
-    PlaceOrdersComponent,
-    ManageOrdersComponent,
-    OnlineCheckoutComponent,
     HeaderComponent,
-    HomeComponent,
     OrderComponent,
-    IceCreamListComponent,
-    AccountComponent
+    BrowseIceCreamComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    HomeModule,
+    // Add RouterModule to the imports array and pass the routes
+    RouterModule.forRoot(routes),
     AppRoutingModule,
-   
+    // Add Angular Material modules to the imports array
     MatToolbarModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    AngularFireModule.initializeApp(environment.firebase)
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

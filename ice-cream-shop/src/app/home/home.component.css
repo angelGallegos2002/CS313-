@@ -1,5 +1,30 @@
-section {
-    text-align: center;
-    margin: 2rem;
-  }
-  
+.home-container {
+  background-image: url('https://example.com/ice_cream_background.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  color: white;
+}
+
+.images-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.images-container img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}

@@ -1,0 +1,9 @@
+<form (ngSubmit)="onRegister()">
+  <mat-form-field>
+    <input matInput [(ngModel)]="email" name="email" type="email" placeholder="Email" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Register</button>
+</form>
