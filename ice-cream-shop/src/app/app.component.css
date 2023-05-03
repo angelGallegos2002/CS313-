@@ -11,10 +11,12 @@ body {
   mat-toolbar {
     display: flex;
     justify-content: space-between;
+    background-color: grey;
   }
   
   .navigation-links {
     display: flex;
+    background-color: grey;
   }
   
   .navigation-link {
@@ -22,6 +24,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     color: white;
+    
   }
   
   .navigation-link:hover {
@@ -88,5 +91,9 @@ body {
     width: 100%;
     max-width: 200px;
     align-self: flex-end;
+  }
+  img{
+    width: 300px;
+    height: 200px;
   }
   
