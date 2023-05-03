@@ -10,9 +10,9 @@ export class AccountService {
 
   constructor(private db: AngularFireDatabase) {}
 
-    addAccount(newAccount: account){
+    addAccount(newAccount: account, uid:string){
       //return this.http.post('https://ice-cream-shop-2d114-default-rtdb.firebaseio.com/' + 'account.json', newAccount);
-      const objectRef = this.db.object('/account/new');
+      const objectRef = this.db.object('/account/' + uid);
       objectRef.set(newAccount);
     }
 

@@ -42,7 +42,7 @@ export class RegisterComponent {
         userID: this.uid
 
       }
-      this.accService.addAccount(newAccount);
+      this.accService.addAccount(newAccount, this.uid);
     }, 2000);
   }
 }
