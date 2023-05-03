@@ -3,11 +3,10 @@
     <a class="navigation-link" routerLink="/">Home</a>
     <a class="navigation-link" routerLink="/order">Order</a>
     <a class="navigation-link" routerLink="/account">Account</a>
-    <ng-container *ngIf="user">
-      <a class="navigation-link">{{ user.displayName }}</a>
+    <ng-container *ngIf="user$ | async as user">
       <a class="navigation-link" (click)="logout()">Logout</a>
     </ng-container>
-    <ng-container *ngIf="!user">
+    <ng-container *ngIf="!user$">
       <a class="navigation-link" routerLink="/login">Login</a>
       <a class="navigation-link" routerLink="/register">Register</a>
     </ng-container>
@@ -17,9 +16,9 @@
 <router-outlet></router-outlet>
 
 <!-- Display a welcome message when the user is logged in -->
-<ng-container *ngIf="user">
+<ng-container *ngIf="user$ | async as user">
   <div class="welcome-message">
-    <h1>Welcome, {{ user.displayname }}!</h1>
+    <h1>Welcome, {{ user.firstName }} {{user.lastName}}!</h1>
     <p>Enjoy browsing our delicious ice cream flavors and creating your perfect ice cream order!</p>
   </div>
 </ng-container>
