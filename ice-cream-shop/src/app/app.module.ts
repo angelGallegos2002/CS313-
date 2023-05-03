@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule} from '@angular/common/http'
 
 // Import RouterModule and Route configuration
 import { RouterModule, Routes } from '@angular/router';
@@ -25,6 +26,9 @@ import { BrowseIceCreamComponent } from './browse-ice-cream/browse-ice-cream.com
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from './home/home.module';
+import {MatButtonModule} from '@angular/material/button';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
 // Define your routes
 const routes: Routes = [
   { path: '', component: BrowseIceCreamComponent },
@@ -56,9 +60,11 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatButtonModule,
     MatOptionModule,
-    AngularFireModule.initializeApp(environment.firebase)
-
+    AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

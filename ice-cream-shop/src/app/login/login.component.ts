@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  
+  email!: string;
+  password!: string;
 
-  constructor() { }
+  constructor(private auth: AngularFireAuth) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -20,7 +25,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      // Perform the login logic here
+      this.auth.signInWithEmailAndPassword(this.email, this.password)
+    .then(() => {
+      console.log('Logged in successfully!');
+    })
+    .catch(error => {
+      console.error('Error logging in:', error);
+    });
     }
   }
 }

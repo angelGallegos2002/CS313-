@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
 import { AccountComponent } from './account/account.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/browse', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'browse', component: BrowseIceCreamComponent },
   { path: 'account', component: ManageAccountComponent },
   { path: 'orders', component: PlaceOrdersComponent },
