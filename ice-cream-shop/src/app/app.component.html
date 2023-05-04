@@ -15,21 +15,21 @@
 
 <router-outlet></router-outlet>
 
-<!-- Display a welcome message when the user is logged in -->
-<ng-container *ngIf="user$ | async as user">
+
+<!-- <ng-container *ngIf="user$ | async as user">
   <div class="welcome-message">
     <h1>Welcome, {{ user.firstName }} {{user.lastName}}!</h1>
     <p>Enjoy browsing our delicious ice cream flavors and creating your perfect ice cream order!</p>
   </div>
 </ng-container>
 
-<!-- Display a message prompting the user to log in or register when not logged in -->
+
 <ng-template #notLoggedIn>
   <div class="login-prompt">
     <h1>Welcome to our Ice Cream Shop!</h1>
     <p>Please <a routerLink="/login">log in</a> or <a routerLink="/register">register</a> to start creating your ice cream order.</p>
   </div>
-</ng-template>
+</ng-template> -->
 <div class="home-page">
   <h1>Welcome to our Ice Cream Shop!</h1>
   <p>Discover our delicious ice cream flavors and create your perfect ice cream order.</p>

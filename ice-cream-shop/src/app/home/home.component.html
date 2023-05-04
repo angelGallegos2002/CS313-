@@ -1,11 +1,20 @@
-<div class="home-container">
-  <div class="header">
-    <h1>Welcome to our Ice Cream Shop!</h1>
+<ng-container *ngIf="user$ | async as user">
+  <div class="welcome-message">
+    <h1>Welcome, {{ user.firstName }} {{user.lastName}}!</h1>
     <p>Enjoy browsing our delicious ice cream flavors and creating your perfect ice cream order!</p>
   </div>
+</ng-container>
+
+<!-- Display a message prompting the user to log in or register when not logged in -->
+<ng-container class="welcome-message" *ngIf="!user$">
+  <div class="welcome-message">
+    <h1>Welcome to our Ice Cream Shop!</h1>
+    <p>Please <a routerLink="/login">log in</a> or <a routerLink="/register">register</a> to start creating your ice cream order.</p>
+  </div>
+</ng-container>
   <div class="images-container">
     <img src="https://example.com/ice_cream_1.jpg" alt="Ice cream 1">
     <img src="https://example.com/ice_cream_2.jpg" alt="Ice cream 2">
     <img src="https://example.com/ice_cream_3.jpg" alt="Ice cream 3">
   </div>
-</div>
+
