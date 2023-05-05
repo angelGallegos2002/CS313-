@@ -11,14 +11,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
-import { environment } from '../app/enviroments/enviroment';
+import { environment } from '../enviroments/enviroment';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { OrderComponent } from './order/order.component';
@@ -28,11 +28,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeModule } from './home/home.module';
 import {MatButtonModule} from '@angular/material/button';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import {MatCard, MatCardModule} from '@angular/material/card';
+import { IceCreamListComponent } from './ice-cream-list/ice-cream-list.component';
 
 // Define your routes
 const routes: Routes = [
   { path: '', component: BrowseIceCreamComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'ice-cream-service', component: IceCreamListComponent },
 ];
 
 @NgModule({
@@ -42,7 +45,8 @@ const routes: Routes = [
     OrderComponent,
     BrowseIceCreamComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    IceCreamListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,6 @@ const routes: Routes = [
     // Add Angular Material modules to the imports array
     MatToolbarModule,
     MatGridListModule,
-    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -64,7 +67,8 @@ const routes: Routes = [
     MatOptionModule,
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
