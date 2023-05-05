@@ -16,32 +16,25 @@ import { AccountService } from '../account.service';
  
 })
 export class OrderComponent implements OnInit {
-  selectedFlavor: Flavor;
+  selectedFlavor!: Flavor;
   flavors: Flavor[];
   orderForm: FormGroup; // Add this line
   formBuilder: FormBuilder;
-  toppings: Topping[]; // Add this line,
-  selectedTopping: Topping;
   size!: string;
   name!: string;
   currentDate!: Date;
-  uid!: string;
+  uid: string = 'null';
+  notes!: string;
 
   constructor(formBuilder: FormBuilder, private authService: AuthService, private afAuth: AngularFireAuth, private ordService: OrderService) {
     this.formBuilder = formBuilder;
-    this.selectedFlavor = new Flavor(0, '', '', '');
-    this.selectedTopping = new Topping(0, '', '', ''); // Add this line
+    //this.selectedFlavor = new Flavor(0, '', '', '');// Add this line
 
     this.flavors = [
       new Flavor(1, 'Vanilla', 'Classic vanilla flavor', 'path/to/vanilla-image.jpg'),
       new Flavor(2, 'Chocolate', 'Rich chocolate flavor', 'path/to/chocolate-image.jpg'),
       new Flavor(3, 'Strawberry', 'Sweet strawberry flavor', 'path/to/strawberry-image.jpg'),
     ];
-    this.toppings = [ // Add this array
-    new Topping(1, 'Sprinkles', 'Colorful candy sprinkles', 'path/to/sprinkles-image.jpg'),
-    new Topping(2, 'Chocolate Chips', 'Crunchy chocolate chips', 'path/to/chocolate-chips-image.jpg'),
-    new Topping(3, 'Caramel', 'Sweet and sticky caramel sauce', 'path/to/caramel-image.jpg'),
-  ];
     this.orderForm = this.formBuilder.group({
       // Define your form controls here
     });
@@ -52,13 +45,12 @@ export class OrderComponent implements OnInit {
       customerName: ['', Validators.required],
       flavor: ['', Validators.required],
       size: ['', Validators.required],
-      toppings: [''],
       notes: ['']
     });
   }
 
   onSubmit() {
-    if (this.orderForm.valid) {
+   // if (this.orderForm.valid) {
       console.log('Order submitted:', this.orderForm.value);
       this.currentDate = new Date();
       this.afAuth.authState.subscribe(user => {
@@ -74,11 +66,12 @@ export class OrderComponent implements OnInit {
           timesubmitted: this.currentDate.toDateString() + this.currentDate.toTimeString(),
           name: this.name,
           userID: this.uid,
+          notes: this.notes,
         }
         this.ordService.addOrder(newOrder);
       }, 2000);
-    } else {
-      console.log('Form is not valid');
-    }
+    //} else {
+    //  console.log('Form is not valid');
+    //}
   }
 }

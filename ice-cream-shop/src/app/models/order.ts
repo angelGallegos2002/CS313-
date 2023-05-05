@@ -3,5 +3,6 @@ export interface order{
     timesubmitted:string;
     size: string;
     name: string;
-    userID: string;   
+    userID: string;
+    notes: string;   
 }
