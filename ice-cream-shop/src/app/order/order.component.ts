@@ -7,6 +7,7 @@ import { order } from '../models/order';
 import { AuthService } from '../auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AccountService } from '../account.service';
+import { FlavorService } from '../ice-cream.service';
 
 @Component({
   selector: 'app-order',
@@ -17,7 +18,6 @@ import { AccountService } from '../account.service';
 })
 export class OrderComponent implements OnInit {
   selectedFlavor!: Flavor;
-  flavors: Flavor[];
   orderForm: FormGroup; // Add this line
   formBuilder: FormBuilder;
   size!: string;
@@ -25,22 +25,24 @@ export class OrderComponent implements OnInit {
   currentDate!: Date;
   uid: string = 'null';
   notes!: string;
-
-  constructor(formBuilder: FormBuilder, private authService: AuthService, private afAuth: AngularFireAuth, private ordService: OrderService) {
+  flavors: Flavor[] = []; // Add this line
+  selected:String="Small";
+  constructor(formBuilder: FormBuilder, private authService: AuthService, private afAuth: AngularFireAuth, private ordService: OrderService, private iceCreamService :FlavorService) {
     this.formBuilder = formBuilder;
     //this.selectedFlavor = new Flavor(0, '', '', '');// Add this line
 
-    this.flavors = [
-      new Flavor(1, 'Vanilla', 'Classic vanilla flavor', 'path/to/vanilla-image.jpg'),
-      new Flavor(2, 'Chocolate', 'Rich chocolate flavor', 'path/to/chocolate-image.jpg'),
-      new Flavor(3, 'Strawberry', 'Sweet strawberry flavor', 'path/to/strawberry-image.jpg'),
-    ];
+  
     this.orderForm = this.formBuilder.group({
       // Define your form controls here
     });
   }
   
   ngOnInit(): void {
+    this.iceCreamService.getFlavors();
+    setTimeout(() => {
+     this.flavors=this.iceCreamService.flavList;
+     console.log(this.flavors);
+     }, 500);;
     this.orderForm = this.formBuilder.group({
       customerName: ['', Validators.required],
       flavor: ['', Validators.required],

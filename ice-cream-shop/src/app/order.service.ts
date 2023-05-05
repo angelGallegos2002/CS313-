@@ -15,7 +15,7 @@ export interface IceCreamOrder {
 })
 export class OrderService {
   private orders: IceCreamOrder[] = [];
-  private orderCounter = 0;
+  private orderNum = 0;
 
   private ordersSource = new BehaviorSubject<IceCreamOrder[]>([]);
   orders$ = this.ordersSource.asObservable();
@@ -23,8 +23,8 @@ export class OrderService {
   constructor(private db: AngularFireDatabase) {}
 
   addOrder(newOrder: order){
-    const objectRef = this.db.object('/order/' + this.orderCounter);
-    this.orderCounter++;
+    this.orderNum = Math.floor(Math.random() * 10000)+1;
+    const objectRef = this.db.object('/order/' + this.orderNum);
     objectRef.set(newOrder);
   }
 

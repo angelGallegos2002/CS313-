@@ -14,9 +14,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    
-
-
     <mat-form-field appearance="fill">
       <mat-label>Size</mat-label>
       <mat-select [(ngModel)]="size" formControlName="size">
@@ -25,9 +22,6 @@
         <mat-option value="large">Large</mat-option>
       </mat-select>
     </mat-form-field>
-
-    
-
     <mat-form-field appearance="fill">
       <mat-label>Notes</mat-label>
       <textarea [(ngModel)]="notes" matInput formControlName="notes"></textarea>
@@ -35,6 +29,6 @@
 
     <button mat-raised-button color="primary" type="submit">Submit Order</button>
 
-   
+
   </form>
 </div>
