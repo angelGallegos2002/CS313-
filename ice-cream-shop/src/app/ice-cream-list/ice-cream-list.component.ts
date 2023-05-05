@@ -17,10 +17,11 @@ export class IceCreamListComponent {
   }
 
   ngOnInit(): void {
-   setTimeout(() => {
     this.iceCreamService.getFlavors();
-    }, 1500);;
+   setTimeout(() => {
     this.flavors=this.iceCreamService.flavList;
     console.log(this.flavors);
+    }, 500);;
+
   }
 }
