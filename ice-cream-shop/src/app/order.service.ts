@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { BehaviorSubject } from 'rxjs';
+import { order } from './models/order';
 
 export interface IceCreamOrder {
   id: number;
@@ -13,23 +15,17 @@ export interface IceCreamOrder {
 })
 export class OrderService {
   private orders: IceCreamOrder[] = [];
-  private orderCounter = 0;
+  private orderNum = 0;
 
   private ordersSource = new BehaviorSubject<IceCreamOrder[]>([]);
   orders$ = this.ordersSource.asObservable();
 
-  constructor() {}
+  constructor(private db: AngularFireDatabase) {}
 
-  createOrder(flavorId: number, quantity: number): IceCreamOrder {
-    const newOrder: IceCreamOrder = {
-      id: ++this.orderCounter,
-      flavorId,
-      quantity,
-      status: 'pending',
-    };
-    this.orders.push(newOrder);
-    this.ordersSource.next(this.orders);
-    return newOrder;
+  addOrder(newOrder: order){
+    this.orderNum = Math.floor(Math.random() * 10000)+1;
+    const objectRef = this.db.object('/order/' + this.orderNum);
+    objectRef.set(newOrder);
   }
 
   updateOrderStatus(orderId: number, status: string): void {
