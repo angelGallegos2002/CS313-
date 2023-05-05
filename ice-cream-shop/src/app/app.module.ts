@@ -20,9 +20,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../enviroments/enviroment';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { OrderComponent } from './order/order.component';
-import { BrowseIceCreamComponent } from './browse-ice-cream/browse-ice-cream.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from './home/home.module';
@@ -30,10 +28,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import {MatCard, MatCardModule} from '@angular/material/card';
 import { IceCreamListComponent } from './ice-cream-list/ice-cream-list.component';
+import { HomeComponent } from './home/home.component';
 
 // Define your routes
 const routes: Routes = [
-  { path: '', component: BrowseIceCreamComponent },
+  { path: '', component: HomeComponent },
   { path: 'order', component: OrderComponent },
   { path: 'ice-cream-service', component: IceCreamListComponent },
 ];
@@ -41,9 +40,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     OrderComponent,
-    BrowseIceCreamComponent,
     RegisterComponent,
     LoginComponent,
     IceCreamListComponent

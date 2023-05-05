@@ -4,7 +4,7 @@
   <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <mat-form-field appearance="fill">
       <mat-label>Customer Name</mat-label>
-      <input matInput [(ngModel)]="name" formControlName="customerName" />
+      <input matInput [(ngModel)]="name" style="border: transparent;border-radius: 0%;background-color: transparent;" formControlName="customerName" />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Flavor</mat-label>

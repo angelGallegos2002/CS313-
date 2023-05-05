@@ -1,5 +1,7 @@
+<h1 style="text-align: center;font-size: 200%;">Register Account Here!</h1>
 <form (ngSubmit)="onRegister()">
-  <mat-form-field>
+  <div class="form-container" >
+  <mat-form-field style="vertical-align: auto;">
     <input matInput [(ngModel)]="email" name="email" type="email" placeholder="Email" required>
   </mat-form-field>
   <mat-form-field>
@@ -12,4 +14,5 @@
     <input matInput [(ngModel)]="lastName" name="lastName" type="lastName" placeholder="Last Name Here" required>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Register</button>
+</div>
 </form>

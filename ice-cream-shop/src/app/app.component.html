@@ -2,7 +2,6 @@
   <div class="navigation-links">
     <a class="navigation-link" routerLink="/">Home</a>
     <a class="navigation-link" routerLink="/order">Order</a>
-    <a class="navigation-link" routerLink="/account">Account</a>
     <a class="navigation-link" routerLink="/ice-cream-service">Flavors</a>
     <ng-container *ngIf="user$ | async as user">
       <a class="navigation-link" (click)="logout()">Logout</a>
