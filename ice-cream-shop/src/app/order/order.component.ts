@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Flavor } from '../models/flavor.model';
 import { Topping } from '../models/toppings.model';
 import { OrderService } from '../order.service';
+import { order } from '../models/order';
+import { AuthService } from '../auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-order',
@@ -18,8 +22,12 @@ export class OrderComponent implements OnInit {
   formBuilder: FormBuilder;
   toppings: Topping[]; // Add this line,
   selectedTopping: Topping;
+  size!: string;
+  name!: string;
+  currentDate!: Date;
+  uid!: string;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, private authService: AuthService, private afAuth: AngularFireAuth, private ordService: OrderService) {
     this.formBuilder = formBuilder;
     this.selectedFlavor = new Flavor(0, '', '', '');
     this.selectedTopping = new Topping(0, '', '', ''); // Add this line
@@ -52,7 +60,23 @@ export class OrderComponent implements OnInit {
   onSubmit() {
     if (this.orderForm.valid) {
       console.log('Order submitted:', this.orderForm.value);
-      // Handle form submission logic here
+      this.currentDate = new Date();
+      this.afAuth.authState.subscribe(user => {
+        if (user) {
+          this.uid = user.uid;
+          console.log('uid is', this.uid);
+        }
+      });
+      setTimeout(() => {
+        const newOrder: order = {
+          flavor: this.selectedFlavor.name,
+          size: this.size,
+          timesubmitted: this.currentDate.toDateString() + this.currentDate.toTimeString(),
+          name: this.name,
+          userID: this.uid,
+        }
+        this.ordService.addOrder(newOrder);
+      }, 2000);
     } else {
       console.log('Form is not valid');
     }
