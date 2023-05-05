@@ -3,9 +3,9 @@
     <mat-card-header>
       <mat-card-title>{{ f.name}}</mat-card-title>
       <mat-card-subtitle>{{ f.description }}</mat-card-subtitle>
+      <img src="assets/{{f.name}}.png" style="height: auto;width: 20%;margin-left: auto;" alt="{{f.name}} Picture">
     </mat-card-header>
     <mat-card-content>
-
       <mat-select [(value)]="selected" placeholder="Select A Size">
         <mat-option value="Small">
           Small
