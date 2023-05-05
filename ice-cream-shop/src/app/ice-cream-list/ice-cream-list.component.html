@@ -1,5 +1,23 @@
-<div *ngFor="let flavor of flavors">
-    <h3>{{ flavor.name }}</h3>
-    <p>{{ flavor.description }}</p>
-  </div>
-  
+<div  *ngFor="let f of flavors">
+  <mat-card style="background: radial-gradient(circle, rgba(121,211,217,1) 0%, rgba(255,255,255,1) 100%);width: 50%;margin:auto;">
+    <mat-card-header>
+      <mat-card-title>{{ f.name}}</mat-card-title>
+      <mat-card-subtitle>{{ f.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-select [(value)]="selected" placeholder="Select A Size">
+        <mat-option value="Small">
+          Small
+        </mat-option>
+        <mat-option value="Medium">
+          Medium
+        </mat-option>
+        <mat-option value="Large">
+          Large
+        </mat-option>
+      </mat-select>
+
+  </mat-card-content>
+  </mat-card>
+</div>
