@@ -8,13 +8,23 @@
 <!-- Display a message prompting the user to log in or register when not logged in -->
 <ng-container class="welcome-message" *ngIf="!user$">
   <div class="welcome-message">
-    <h1>Welcome to our Ice Cream Shop!</h1>
-    <p>Please <a routerLink="/login">log in</a> or <a routerLink="/register">register</a> to start creating your ice cream order.</p>
+    <h1 style="font-size:100px">Welcome to our Ice Cream Shop!</h1>
+    <h2></h2>
+    <h2></h2>
+    <h2 style="font-size:xx-large">Please <a routerLink="/login">log in</a> or <a routerLink="/register">register</a> to start creating your ice cream order.</h2>
   </div>
 </ng-container>
   <div class="images-container">
-    <img src="https://example.com/ice_cream_1.jpg" alt="Ice cream 1">
-    <img src="https://example.com/ice_cream_2.jpg" alt="Ice cream 2">
-    <img src="https://example.com/ice_cream_3.jpg" alt="Ice cream 3">
+    <img src="assets/oreocone.jpg" alt="Ice cream 1" style="width:500px;height:800px">
+    <img src="assets/tripleflavorcone.jpg" alt="Ice cream 2" style="width:500px;height:800px">
+    <img src="assets/rainbowcone.jpg" alt="Ice cream 3" style="width:500px;height:800px">
   </div>
+  <footer style="bottom: 0; left: 0; right: 0; text-align: center; background-color: #f2f2f2; padding: 20px;">
+    <div style="display: inline-block;">
+      <h2>About Us</h2>
+      <h4 style="width:380px">We are a group of students who are passionate about ice cream 
+        and are dedicated to bringing you the best tasting frozen treats you've ever had!</h4>
+    </div>
+  </footer>
+  
 
