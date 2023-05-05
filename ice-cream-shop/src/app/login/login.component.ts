@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   email!: string;
   password!: string;
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private auth: AngularFireAuth, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -33,5 +34,8 @@ export class LoginComponent implements OnInit {
       console.error('Error logging in:', error);
     });
     }
+    setTimeout(() => {
+      this.router.navigate(['/'])
+    }, 500)
   }
 }
